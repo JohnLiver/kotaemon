@@ -1,0 +1,120 @@
+repo_name: Cinnamon/kotaemon
+repo_url: https://github.com/Cinnamon/kotaemon
+site_name: kotaemon Docs
+edit_uri: edit/main/docs/
+
+nav:
+  - Getting Started:
+      - Quick Start: index.md
+      - Basic Usage: usage.md
+  # - Application:
+  #     - Customize UI: pages/app/customize-ui.md
+  # - Functional description: pages/app/functional-description.md
+  - Development:
+      - development/index.md
+      # - Data & Data Structure Components: development/data-components.md
+      # - Features: pages/app/features.md
+      - Customize flow logic: pages/app/customize-flows.md
+      - Creating a Component: development/create-a-component.md
+      - Components:
+          - Index:
+              - File index: pages/app/index/file.md
+          - Settings:
+              - pages/app/settings/overview.md
+              - pages/app/settings/user-settings.md
+          - Extension:
+              - User management: pages/app/ext/user-management.md
+      - Contributing: development/contributing.md
+  # generated using gen-files + literate-nav
+  - API Reference: reference/
+  - Changelogs: https://github.com/Cinnamon/kotaemon/releases
+  - Issue Tracker: https://github.com/Cinnamon/kotaemon/issues
+  - Live Demo: https://huggingface.co/spaces/cin-model/kotaemon-demo
+
+markdown_extensions:
+  - admonition
+  - md_in_html
+  - pymdownx.highlight:
+      use_pygments: true
+      anchor_linenums: true
+      line_spans: __span
+      linenums: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.extra
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+      title: Page contents
+  - mdx_truly_sane_lists
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - docs/scripts/generate_reference_docs.py
+  - literate-nav:
+      nav_file: Summary.md
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_options:
+              ignore_init_summary: false
+            filters:
+              - "!^_"
+            members_order: source
+            separate_signature: true
+          paths: [libs/kotaemon/kotaemon]
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+      fallback_to_build_date: true
+  - section-index
+  - mkdocs-video
+
+theme:
+  features:
+    - content.action.edit
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.annotations
+    - content.code.copy
+    - navigation.tabs
+    - navigation.top
+    - navigation.instant
+    - navigation.indexes
+    - toc.follow
+    - search.share
+    - search.highlight
+    - search.suggest
+  name: material
+  custom_dir: docs/theme
+  palette:
+    scheme: dracula
+    primary: deep purple
+    accent: deep purple
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+extra_css:
+  - extra/css/code_select.css
+  - assets/pymdownx-extras/extra-fb5a2a1c86.css
+
+extra_javascript:
+  - assets/pymdownx-extras/extra-loader-MCFnu0Wd.js
+
+validation:
+  absolute_links: warn
+  omitted_files: warn
+  unrecognized_links: warn
